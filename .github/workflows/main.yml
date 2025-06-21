@@ -23,8 +23,5 @@ jobs:
           username: ${{ secrets.EC2_NAME }}
           key: ${{ secrets.EC2_SSH }}
           port: 22
-          script: |
-            whoami
-            pwd
-            ls -al
-            mkdir Yashwanth
+          source: "index.html"
+          target: /home/ubuntu
