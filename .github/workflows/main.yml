@@ -15,9 +15,9 @@ jobs:
    
       - name: show all files
         run: ls -al
-
+      
       - name: Doing SSH to EC2
-        uses: appleboy/scp-action@v1
+        uses: appleboy/ssh-action@v1
         with:
           host: ${{ secrets.EC2_IP }}
           username: ${{ secrets.EC2_NAME }}
@@ -26,5 +26,13 @@ jobs:
           script: |
             mkdir ./var/www/html
             rm ./index.html
+       
+      - name: Doing SSH to EC2
+        uses: appleboy/scp-action@v1
+        with:
+          host: ${{ secrets.EC2_IP }}
+          username: ${{ secrets.EC2_NAME }}
+          key: ${{ secrets.EC2_SSH }}
+          port: 22
           source: "./"
-          target: "./"
+          target: "./var/www/html/"
